@@ -1,0 +1,14 @@
+---
+pipeline: "workflows/node/CanaryReleaseStageAndApprovePromote/Jenkinsfile"
+chatRoom: "noelo"
+issueProjectName: "noelo"
+buildName: "nodejs-ex"
+codeReview: false
+links:
+  Git: "https://github.com/noelo/nodejs-ex.git"
+  Job: "http://jenkins.vagrant.f8/job/nodejs-ex"
+  Production: "http://172.30.89.9:80/kubernetes/pods?namespace=default-production"
+  Staging: "http://172.30.89.9:80/kubernetes/pods?namespace=default-staging"
+environments:
+  Staging: "default-staging"
+  Production: "default-production"

@@ -1,4 +1,4 @@
-Node.js sample app on OpenShift! Test2
+Node.js sample app on OpenShift! Test3
 -----------------
 
 This example will serve a welcome page and the current hit count as stored in a database.
@@ -67,15 +67,15 @@ We can also [create new apps using OpenShift template files](https://docs.opensh
 Looking at the repo, you'll notice two files in the openshift/template directory:
 
 	nodejs-ex
-	├── README.md
-	├── openshift
-	│   └── templates
-	│       ├── nodejs-mongodb.json
-	│       └── nodejs.json
-	├── package.json
-	├── server.js
-	└── views
-	    └── index.html
+	âââ README.md
+	âââ openshift
+	âÂ Â  âââ templates
+	âÂ Â      âââ nodejs-mongodb.json
+	âÂ Â      âââ nodejs.json
+	âââ package.json
+	âââ server.js
+	âââ views
+	    âââ index.html
 
 We can create the the new app from the `nodejs.json` template by using the `-f` flag and pointing the tool at a path to the template file:
 

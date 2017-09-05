@@ -8,9 +8,9 @@ node('nodejs') {
     currproject = openshift.project()
 
   stage 'tag'
-    openshiftTag(namespace: ${currproject}, sourceStream: 'nodejs-example', sourceTag: 'latest', destinationNamespace: ${openshift.project()}, destinationStream: 'nodejs-example', destinationTag: 'testready')
+    openshiftTag(namespace: ${currproject}, sourceStream: 'nodejs-example', sourceTag: 'latest', destinationNamespace: ${currproject}, destinationStream: 'nodejs-example', destinationTag: 'testready')
 
   stage 'deploy'
-    openshiftDeploy(deploymentConfig: 'nodejs-example', namespace: ${openshift.project()})
+    openshiftDeploy(deploymentConfig: 'nodejs-example', namespace: ${currproject})
 
 }

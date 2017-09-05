@@ -1,4 +1,4 @@
-node('node') {
+node('maven') {
   stage 'build' {
     openshiftBuild(buildConfig: 'nodejs-ex', showBuildLogs: 'true')
   }

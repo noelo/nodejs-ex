@@ -1,11 +1,11 @@
-node('maven') {
-  stage 'build' {
+node('nodejs') {
+  stage 'build'
     openshiftBuild(buildConfig: 'nodejs-ex', showBuildLogs: 'true')
-  }
-  stage 'tag' {
-  openshiftTag(namespace: 'development', sourceStream: 'nodejs-example', sourceTag: 'latest', destinationNamespace: 'testing', destinationStream: 'nodejs-example', destinationTag: 'latest')
-}
-stage 'deploy'{
-openshiftDeploy(deploymentConfig: 'nodejs-example', namespace: 'testing')
-}
+
+  stage 'tag'
+    openshiftTag(namespace: 'development', sourceStream: 'nodejs-example', sourceTag: 'latest', destinationNamespace: 'testing', destinationStream: 'nodejs-example', destinationTag: 'latest')
+
+  stage 'deploy'
+    openshiftDeploy(deploymentConfig: 'nodejs-example', namespace: 'testing')
+
 }

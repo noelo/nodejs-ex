@@ -5,11 +5,12 @@ node('nodejs') {
     }
   stage 'build'
     openshiftBuild(buildConfig: 'nodejs-ex', showBuildLogs: 'true')
+    currproject = openshift.project()
 
   stage 'tag'
-    openshiftTag(namespace: openshift.project(), sourceStream: 'nodejs-example', sourceTag: 'latest', destinationNamespace: openshift.project(), destinationStream: 'nodejs-example', destinationTag: 'testready')
+    openshiftTag(namespace: ${currproject}, sourceStream: 'nodejs-example', sourceTag: 'latest', destinationNamespace: ${openshift.project()}, destinationStream: 'nodejs-example', destinationTag: 'testready')
 
   stage 'deploy'
-    openshiftDeploy(deploymentConfig: 'nodejs-example', namespace: openshift.project())
+    openshiftDeploy(deploymentConfig: 'nodejs-example', namespace: ${openshift.project()})
 
 }

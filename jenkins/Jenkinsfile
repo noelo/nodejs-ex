@@ -8,7 +8,7 @@ node('nodejs') {
     openshiftBuild(buildConfig: 'nodejs-ex', showBuildLogs: 'true')
 
   stage 'tag'
-    openshiftTag(namespace: currproject, sourceStream: 'nodejs-ex', sourceTag: 'latest', destinationNamespace: currproject, destinationStream: 'nodejs-ex', destinationTag: 'testready')
+    openshiftTag(namespace: currproject, sourceStream: 'nodejs-ex', sourceTag: 'latest', destinationNamespace: currproject, destinationStream: 'nodejs-ex', destinationTag: 'noelotest')
 
   stage 'deploy'
     openshiftDeploy(deploymentConfig: 'nodejs-ex', namespace: currproject)

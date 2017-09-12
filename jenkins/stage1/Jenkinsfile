@@ -5,12 +5,18 @@ node('nodejs') {
       currproject = openshift.project()
     }
   stage 'build'
+    slackSend channel: "#jenkins", message: "Build Started: ${env.JOB_NAME}  ${env.BUILD_NUMBER} in ${currproject} "
     openshiftBuild(buildConfig: 'nodejs-ex', showBuildLogs: 'true')
+    openshiftVerifyBuild((buildConfig: 'nodejs-ex')
+
+  stage 'deploy'
+    slackSend channel: "#jenkins", message: "Deploying build ${env.BUILD_NUMBER} into ${currproject} project"
+    openshiftDeploy(deploymentConfig: 'nodejs-ex', namespace: currproject)
+
+  stage 'verify'
+    openshiftVerifyDeployment(deploymentConfig: 'nodejs-ex')
 
   stage 'tag'
     openshiftTag(namespace: currproject, sourceStream: 'nodejs-ex', sourceTag: 'latest', destinationNamespace: currproject, destinationStream: 'nodejs-ex', destinationTag: 'noelotest')
-
-  stage 'deploy'
-    openshiftDeploy(deploymentConfig: 'nodejs-ex', namespace: currproject)
 
 }

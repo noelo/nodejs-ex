@@ -11,6 +11,6 @@ node('nodejs') {
     openshiftTag(namespace: currproject, sourceStream: 'nodejs-ex', sourceTag: 'latest', destinationNamespace: currproject, destinationStream: 'nodejs-ex', destinationTag: 'testready')
 
   stage 'deploy'
-    openshiftDeploy(deploymentConfig: 'nodejs-ex', namespace: ${currproject})
+    openshiftDeploy(deploymentConfig: 'nodejs-ex', namespace: currproject})
 
 }

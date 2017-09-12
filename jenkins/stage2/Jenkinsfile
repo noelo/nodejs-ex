@@ -1,0 +1,11 @@
+node('nodejs') {
+  stage 'init'
+    openshift.withCluster() { // Use "default" cluster or fallback to OpenShift cluster detection
+      echo "Hello from the project running Jenkins: ${openshift.project()}"
+      currproject = openshift.project()
+    }
+
+  stage 'tag'
+    openshiftTag(namespace: currproject, sourceStream: 'nodejs-ex', sourceTag: 'latest', destinationNamespace: currproject, destinationStream: 'nodejs-ex', destinationTag: 'stage2')
+
+}

@@ -7,7 +7,7 @@ node('nodejs') {
   stage 'build'
     slackSend channel: "#jenkins", message: "Build Started: ${env.JOB_NAME}  ${env.BUILD_NUMBER} in ${currproject} "
     openshiftBuild(buildConfig: 'nodejs-ex', showBuildLogs: 'true')
-    openshiftVerifyBuild((buildConfig: 'nodejs-ex')
+    openshiftVerifyBuild(buildConfig: 'nodejs-ex')
 
   stage 'deploy'
     slackSend channel: "#jenkins", message: "Deploying build ${env.BUILD_NUMBER} into ${currproject} project"

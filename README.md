@@ -1,3 +1,22 @@
+----------------
+Source to image
+----------------
+oc new-app https://github.com/noelo/nodejs-ex -l name=myapp
+oc new-build https://github.com/noelo/nodejs-ex.git --context-dir="jenkins/stage1" --strategy=pipeline --name=node-stage1
+oc new-build https://github.com/noelo/nodejs-ex.git --context-dir="jenkins/stage2" --strategy=pipeline --name=node-stage2
+oc set triggers bc/node-stage2 --from-image=amd-example/nodejs-ex:noelotest
+
+-------------------
+Docker build & push
+-------------------
+vi Dockerfile
+docker build . -t noelo:latest
+docker tag noelo:latest noelo/helloworld:latest  
+docker push noelo/helloworld
+oc import-image  noelohello --from=noelo/helloworld --confirm --all=true
+
+
+
 Node.js sample app on OpenShift! Test3
 -----------------
 

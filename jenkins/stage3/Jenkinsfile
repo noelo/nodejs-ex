@@ -1,0 +1,4 @@
+node('nodejs') {
+  stage 'debug'
+    sh (returnStdout: true, script: '''env''')
+}
